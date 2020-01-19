@@ -1,10 +1,30 @@
-import {DATA_LIST} from '../action/dataAction';
+import {LOADING_FAILED,LOADING_SUCCESS,LOADING} from '../action/dataAction';
 
-
-export default function dataReducer(state=[],action){
+const initialState={
+    loading:false,
+    dataList:[],
+    error:null,
+}
+export default function dataReducer(state=initialState,action){
 switch(action.type){
-    case DATA_LIST:
-        return[...state,action.value]
+    case LOADING:
+        return{
+            ...state,
+            loading:true
+        }
+    case LOADING_SUCCESS:
+            return{
+                dataList:action.value,
+                loading:false,
+                error:null
+            }
+    case LOADING_FAILED:
+        return{
+            ...state,
+            loading:false,
+            error:action.value
+        }
+    
     default:
         return state
 }

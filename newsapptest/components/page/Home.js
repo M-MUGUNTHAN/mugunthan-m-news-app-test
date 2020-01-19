@@ -1,23 +1,45 @@
-import React from 'react';
-import { View, Text,FlatList } from 'react-native';
+import React,{useEffect} from 'react';
+import { View } from 'react-native';
+import { connect } from 'react-redux';
+import { loading } from '../reduxUtils/action/dataAction';
+import * as atom from '../atom';
+//import * as mole from '../molecule';
 
-
-export default function Home(props) {
-    const data=[
-        {id:"1",title:'apple'},
-        {id:"2",title:'apple'},
-        {id:"3",title:'apple'},
-        {id:"4",title:'apple'},
-        {id:"5",title:'apple'},
-
-    ]
-    return (
-        <View>
-            <FlatList
-            data={data}
-    renderItem={({ item }) => <Text >{item.title}</Text>}
-            keyExtractor={item => item.id}
-            />
-        </View>
-    );
+export function Home(props) {
+   // const{list,isloading}=props;
+    useEffect(()=>{
+      isloading();
+    },[]);
+    console.log('props',props);
+   
+    // if(false){
+    // return (
+    //     <View>
+    //             <FlatList
+    //             data={list}
+    //             renderItem={({ item }) =><mole.List article={item}/>}
+    //             keyExtractor={item => item.id}
+    //             />
+    //     </View>
+    // );
+    //     }
+       // else{
+            return(
+                <View>
+                    <atom.LoadingIndicator/>
+                </View>
+            );
+       // }
 }
+
+const mapStateToProps=(state)=>(
+    {
+       list:state.news.dataList
+    }
+)
+const mapDispatchToProps=(dispatch)=>(
+    {
+        isloading:()=>dispatch(loading())
+    }
+);
+export default connect(mapStateToProps,mapDispatchToProps)(Home);
