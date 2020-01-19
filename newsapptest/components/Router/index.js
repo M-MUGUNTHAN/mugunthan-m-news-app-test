@@ -4,7 +4,7 @@ import * as page from '../page';
 
 
 const MainNavigator = createStackNavigator({
-   // home: {screen:page.Home},
+     home: {screen:page.Home},
     detail: {screen:page.Detail},
   },{
         initialRouteName: 'home',

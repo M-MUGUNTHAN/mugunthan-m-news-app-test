@@ -1,4 +1,4 @@
-export {dafault as LoadingIndicator} from './LoadingIndicator';
-export {dafault as Text} from './HeadText';
-export {dafault as Heading1} from './Heading1';
-export {dafault as Heading2} from './Heading2';
+export {default as LoadingIndication} from './LoadingIndication';
+export {default as HeadText} from './HeadText';
+export {default as HeadingOne} from './HeadingOne';
+export {default as HeadingTwo} from './HeadingTwo';

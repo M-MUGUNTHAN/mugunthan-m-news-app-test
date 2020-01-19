@@ -1,17 +1,20 @@
 import React from 'react'
-import { View,Image } from 'react-native'
+import { View,Image,TouchableOpacity} from 'react-native'
 import * as atom from '../atom';
 const List = (props) => {
+    let Image_URL ={ uri:props.urlToImage}
     return (
-        <View style={{height:'15%',backgroundColor:'red',flexDirection:'row'}}>
-            <View style={{width:'70%',backgroundColor:'blue'}}>
-               <atom.Heading2>{props.article.title}</atom.Heading2>
-               <atom.Text>{props.article.author}</atom.Text>
+        <TouchableOpacity style={{marginBottom:'5%'}} onPress={()=>props.navigate('detail',{})}>
+        <View style={{flexDirection:'row'}}>
+            <View style={{width:'70%'}}>
+               <atom.HeadingTwo>{props.title}</atom.HeadingTwo>
+               <atom.HeadText>{props.author}</atom.HeadText>
             </View>
-            <View style={{width:'30%',backgroundColor:'green'}}>
-             <Image source={{uri:`${props.article.urlToImage}`}}/>
-            </View>
+            <View style={{width:'30%',alignItems:'center',justifyContent:'center'}}>
+             <Image style={{backgroundColor:'gray'}} source={Image_URL} width={100} height={100}/>
+             </View>
         </View>
+        </TouchableOpacity>
     )
 }
 
